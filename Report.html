@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Home Page</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align:center;
+  font-size:11PX;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  font-size:14px;
+  text-align:center;
+}
+.style1 {
+	font-family: "Roboto Condensed";
+	font-size: 12px;
+}
+</style>
+
+<script type="text/javascript">
+var loadingpercentage=1;
+
+
+onload=function()
+{
+
+var slno=1;
+var users=[];
+
+var totalworks=0;
+var c_works=0;
+var p_works=0;
+ var cusercount=0;
+  var cusercount2=0;
+
+var script_url="https://script.google.com/macros/s/AKfycbwytiBvhjziS6dZcun_z0iCCE2WrjLXtO7wS5iDecxR37WyMk4/exec";
+var script_url_readdata="https://script.google.com/macros/s/AKfycbwkSsXdBNnuffFLNk3h-aRqadfSRln-pJyxAxaijFIp9l8GGs3Y/exec";
+var url = script_url+"?action=read";
+var url2 = script_url_readdata+"?action=read";
+
+
+
+$.getJSON(url, function (json) 
+			{
+			
+	
+						for (var i = 0; i < json.records.length; i++) 
+							{
+								var C1=json.records[i].Name_of_Staff;
+								
+								
+								users.push(C1);
+									
+								
+				   		 	 }
+							 
+				for (var k = 0; k < users.length; k++) 
+				{
+				console.log("length of user "+users.length)
+				inserttotable(users[k],k); 
+				}
+						
+						
+			     
+	   }); 
+	   
+	   
+	   function inserttotable(cusercount,k)
+	   {
+	   
+	   console.log(cusercount,k);
+	   
+				
+					cusercount2=k;
+				
+					$.getJSON(url2, function (json) 
+					{
+					
+						
+			
+								for (var i = 0; i < json.records.length; i++) 
+									{
+										var C1=json.records[i].ASSIGNED_TO;
+										var C2=json.records[i].CURRENT_STATUS;
+										
+										
+										
+										if(C1==users[cusercount2])
+										{
+										
+										
+											
+										totalworks++
+											if(C2=="Completed")
+											{
+											c_works++;
+											}
+											else if(C2=="Pending")
+											{
+											p_works++;
+											}
+										
+										}
+			
+								   } 
+								   
+								     tr = customers.insertRow(-1);
+									var tabCell = tr.insertCell(-1);
+									tabCell.innerHTML =slno;
+									slno++;
+									tabCell = tr.insertCell(-1);
+									
+									tabCell.innerHTML =cusercount;
+									tabCell = tr.insertCell(-1);
+									
+									 tabCell.innerHTML =totalworks;
+									tabCell = tr.insertCell(-1);
+									
+									 tabCell.innerHTML =c_works;
+									tabCell = tr.insertCell(-1);
+									
+									 tabCell.innerHTML =p_works;
+									
+								totalworks=0;
+								c_works=0;
+								p_works=0;
+					
+					   });
+					   
+		   
+
+}
+
+}
+</script>
+
+</head>
+
+<body>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="99" border="0" style="height: inherit; text-align: right; font-size: 14px;">
+    <tr>
+      <td width="252" height="95"><div align="left"><a href="Index.html"><img src="IIB-logo-small.png" width="242" height="65" border="0" style="margin-left:10px;"  onclick="openNav()"/></a></div></td>
+      <td width="32" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="177" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="401" style="text-align: center">&nbsp;</td>
+      <td width="219" bgcolor="#FFFFFF"><img src="Skill-_-NSDC-Logo-SMALL22.jpg"width="208" height="93" style="margin-right:10px;" /></td>
+    </tr>
+  </table>
+</div><br/>
+
+<div id="loaddiv">
+
+<table id="customers" name="customers" style="width:100%;table-layout: auto; margin-top:5px;">
+  <tr style="text-align: justify; font-family: Arial;">
+    <th width="8%" height="56">SL.NO</th>
+    <th width="33%">NAME OF STAFF/ DIVISION</th>
+    <th width="18%">TOTAL NUMBER OF WORKS <br/>ASSIGNED</th> 
+    <th width="23%"><p>TOTAL NUMBER OF WORKS <br/>COMPLETED</p></th>
+    <th width="18%">TOTAL NUMBER OF WORKS <br/>PENDING</th>
+  </tr>
+					
+</table>
+</div>
+
+
+</body>
+</html>
