@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style1 {font-family: "Roboto Condensed"}
+.style3 {
+	font-family: Calibri;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script src="Js/addcallJS.js"></script>
+
+
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+
+input[type=text], select {
+  width: 80%;
+
+  padding: 12px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid  #CCCCCC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+  }
+  
+  input[type=date], select {
+  width: 80%;
+  
+  padding: 12px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+  }
+  input[type=submit] {
+  width: 100%px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+</style>
+
+<body>
+<div style=" height: auto; width:100%" class="one-edge-shadow">
+
+<table width="100%" border="0" style="padding:0;">
+  <tr>
+    <td width="19%"><img src="Images/IIB-logo-small.png" width="242" height="65" /></td>
+    <td width="15%"><div align="center">Home</div></td>
+    <td width="18%"><div align="center">Download Data </div></td>
+    <td width="32%">&nbsp;</td>
+    <td width="16%"><div align="right"><img src="Images/Skill _ NSDC Logo SMALL2.png" width="208" height="93" /></div></td>
+  </tr>
+</table>
+
+
+
+</div>
+
+<table width="100%" border="0">
+  <tr>
+    <td width="12%" height="37"><div align="right" class="style3">Date : </div></td>
+    <td width="39%"><input type="date" id="datepickbox" /></td>
+    <td width="49%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="41"><div align="right" class="style3">Name of Student : </div></td>
+    <td><input name="textfield" type="text" id="namebox" /></td>
+    <td><label id="templab1" style="font-family:'Roboto Condensed'; color:#00CC00; visibility:hidden">"</label>
+	<label id="lastname" style="font-family:'Roboto Condensed'; color:#00CC00; visibility:hidden"></label>
+	<label id="templab2" style="font-family:'Roboto Condensed'; color:#00CC00; visibility:hidden">"</label>
+	&nbsp;<label id="templab3" style="font-family:'Roboto Condensed'; color:#00CC00; visibility:hidden">Succesfully Updated</label>
+	</td>
+  </tr>
+  <tr>
+    <td height="44"><div align="right" class="style3">Phone Number </div></td>
+    <td><input name="textfield2" type="text" id="numberbox" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td height="37"><div align="right" class="style3">District : </div></td>
+    <td><span class="style1">
+      <select name="select" id="districtselect" onchange="setcollegelist()">
+         <option value="null">-----</option>
+        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+        <option value="Kollam">Kollam</option>
+        <option value="Pathanamthitta">Pathanamthitta</option>
+        <option value="Alappuzha">Alappuzha</option>
+        <option value="Kottayam">Kottayam</option>
+        <option value="Idukki">Idukki</option>
+        <option value="Ernakulam">Ernakulam</option>
+        <option value="Thrissur">Thrissur</option>
+        <option value="Palakkad">Palakkad</option>
+        <option value="Malappuram">Malappuram</option>
+        <option value="Kozhikkod">Kozhikkod</option>
+        <option value="Wayanad">Wayanad</option>
+        <option value="Kannur">Kannur</option>
+        <option value="Kasaragod">Kasaragod</option>
+      </select>
+    </span> </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="38"><div align="right" class="style3">College : </div></td>
+    <td><span class="style1">
+      <select name="select2" id="collegelist" onchange="collegeonchange()">
+      </select>
+		<img class="loading" src=""id="img-loading" style="margin-left:20px;" />
+		
+		
+		 
+    </span> </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="44"><div align="right" class="style3">Course : </div></td>
+    <td><span class="style1">
+      <select name="select3" id="courselist" onchange="courseonchange()">
+        </select>
+      <img src="http://loadinggif.com/images/image-selection/3.gif" alt="loading" class="loading" id="img-loading2" style="margin-left:20px;" /></span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="53"><div align="right" class="style3">Remarks : </div></td>
+    <td><span class="style1">
+      <textarea name="textarea" cols="60" rows="3" id="remarksbox"></textarea>
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Partner : </div></td>
+    <td>
+	<div align="left">
+      <table width="475" border="0">
+        <tr>
+          <td width="68%">
+            <div align="left">
+              <input name="textfield222" type="text" id="partnerbox" style="width:260px" />
+              
+			  <img src="http://loadinggif.com/images/image-selection/3.gif" alt="loading" class="loading" id="img-loading3" style="vertical-align:middle;" />
+			
+			  </div>
+			  </td><td width="32%">
+              <div align="center">
+                <input name="submit" type="submit" value="Submit" onclick="submit_to_database()" />
+                  </div></td>
+        </tr>
+      </table>
+      </div></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+</html>

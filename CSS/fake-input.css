@@ -1,0 +1,4 @@
+.fake-input { position: relative; width:240px; }
+.fake-input input { border:none; background-color:#fff; display:block; width: 100%; box-sizing: border-box }
+.fake-input img { position: absolute; top: 2px; right: 5px }/* CSS Document */
+
